@@ -1,12 +1,16 @@
+
+# 使用自定义变量定义路径 $${varName} 取值
+Path = $$PWD
+
+
 SOURCES += \
-    framelesswidget.cpp \
-    helper.cpp \
-    main.cpp \
-    widget.cpp \
-    windowmovehelper.cpp
+    $${Path}/framelesswidget.cpp \
+    $${Path}/helper.cpp \
+    $${Path}/widget.cpp \
+    $${Path}/windowmovehelper.cpp
 
 HEADERS += \
-    framelesswidget.h \
-    helper.h \
-    widget.h \
-    windowmovehelper.h
+    $${Path}/framelesswidget.h \
+    $${Path}/helper.h \
+    $${Path}/widget.h \
+    $${Path}/windowmovehelper.h
