@@ -95,13 +95,22 @@ void SingleApplication::ActivateWindow()
 {
     if(mainForm)
     {
-        mainForm->raise();
+
 #ifdef USE_WIN_API //这个可以显示原窗口的大小（即最小化前的大小）（windowsAPI唤醒窗口）
         HWND hwnd = reinterpret_cast<HWND>(mainForm->winId());
-        ShowWindow(hwnd, SW_RESTORE);
+
+        if(!mainForm->isMinimized()){
+            SetForegroundWindow(hwnd);
+            ShowWindow(hwnd, SW_RESTORE);
+        }
+        else{
+            ShowWindow(hwnd, SW_RESTORE);
+        }
+
 #else
         mainForm->showNormal();
 #endif
+        mainForm->raise();
         mainForm->activateWindow();
     }
 }
