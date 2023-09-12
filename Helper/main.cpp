@@ -2,6 +2,8 @@
 
 
 #include "framelesswidget.h"
+#include "ColorsSelect/colormenu.h"
+#include "ColorsSelect/colorbutton.h"
 #include <QLabel>
 #include <QApplication>
 
@@ -17,8 +19,10 @@ int main(int argc, char *argv[])
     lab->setMinimumSize(600, 400);
     lab->setText("1112");
 
-    FramelessWidget *widget = new FramelessWidget(lab);
-    widget->show();
+//    FramelessWidget widget(lab);
+//    ColorMenu widget;
+    ColorButton widget;
+    widget.show();
 
     return a.exec();
 }

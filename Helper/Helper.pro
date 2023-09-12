@@ -9,6 +9,9 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    ColorsSelect/colorblock.cpp \
+    ColorsSelect/colorbutton.cpp \
+    ColorsSelect/colormenu.cpp \
     framelesswidget.cpp \
     helper.cpp \
     main.cpp \
@@ -16,6 +19,9 @@ SOURCES += \
     windowmovehelper.cpp
 
 HEADERS += \
+    ColorsSelect/colorblock.h \
+    ColorsSelect/colorbutton.h \
+    ColorsSelect/colormenu.h \
     framelesswidget.h \
     helper.h \
     widget.h \
