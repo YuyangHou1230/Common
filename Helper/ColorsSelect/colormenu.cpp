@@ -10,7 +10,7 @@ ColorMenu::ColorMenu(QWidget *parent) : QDialog(parent)
     // 添先加4*4色块
 
     QGridLayout *layout = new QGridLayout();
-    layout->setSpacing(4);
+    layout->setSpacing(0);
 
     for(int row=0; row < 4; row++){
         for(int column=0; column < 4; column++){
