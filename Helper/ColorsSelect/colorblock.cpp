@@ -34,6 +34,7 @@ void ColorBlock::paintEvent(QPaintEvent *e)
 {
     (void)e;
     QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing, true);
 
     // 绘制阴影
 
@@ -46,12 +47,18 @@ void ColorBlock::paintEvent(QPaintEvent *e)
     }
     QRect content = rec.adjusted(hoverOffset, hoverOffset, -hoverOffset, -hoverOffset);
 
+    painter.setPen(Qt::NoPen);
+
     // 绘制边框
     if(m_hasHover && m_hasHoverBorder && m_isEnter){
-        painter.fillRect(rect(), Qt::black);
+        painter.setBrush(Qt::black);
+        painter.drawRoundedRect(rect(), 4, 4);
+//        painter.fillRect(rect(), Qt::black);
     }
 
-    painter.fillRect(content, m_color);
+
+    painter.setBrush(m_color);
+    painter.drawRoundedRect(content, 2, 2);
 }
 
 void ColorBlock::mousePressEvent(QMouseEvent *e)

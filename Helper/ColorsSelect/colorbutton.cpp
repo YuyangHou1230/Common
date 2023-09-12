@@ -23,8 +23,9 @@ ColorButton::ColorButton(QWidget *parent) : QFrame(parent)
      connect(btnEdit, &QPushButton::clicked, this, [=](){
          //         QPoint pos = btnEdit->mapToParent(btnEdit->rect().bottomRight());
          QPoint pos = mapToGlobal(btnEdit->geometry().bottomRight());
-         qDebug() << pos << btnEdit->rect();
-         menu->move(pos);
+         qDebug() << pos << btnEdit->geometry() << mapToGlobal(btnEdit->pos());
+         menu->move(pos + QPoint(menu->geometry().topLeft() - menu->pos() ));
+         qDebug() << menu->pos() << menu->frameGeometry();
          menu->exec();
      });
      connect(menu, &ColorMenu::selected, this, [=](QColor color){
