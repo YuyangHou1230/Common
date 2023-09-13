@@ -16,6 +16,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    setWindowTitle("Qt打包工具");
+    setWindowIcon(QIcon(":/logo.png"));
+
     dlg = new ConfigDlg(this);
 
     connect(&Config::getInstance(), &Config::changed, this, &MainWindow::slotUpdateContent);
@@ -47,7 +50,7 @@ void MainWindow::slotUpdateContent()
 
 
     // 更新当前Qt版本
-    ui->ComboQtVersion->addItem(info.version);
+    ui->editVersion->setText(info.version);
 
     // 更新编译器列表
     ui->comboComplier->clear();
