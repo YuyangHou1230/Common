@@ -7,6 +7,8 @@
 ColorMenu::ColorMenu(QWidget *parent) : QDialog(parent)
 {
 
+    setWindowFlag(Qt::FramelessWindowHint);
+
     // 添先加4*4色块
 
     QGridLayout *layout = new QGridLayout();
