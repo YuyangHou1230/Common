@@ -14,6 +14,7 @@ public:
 
 /**
  * @brief The SingleApplication class
+ * 单实例app，使用QLocalserver实现，效果为打开一个软件后再次双击图标打开该软件则会弹出原来的软件界面
  */
 class SingleApplication : public QApplication, public SingleAppImpl
 {
@@ -50,6 +51,30 @@ private:
     bool          m_isRunning;               //服务名称
 
     QWidget *mainForm; // 主窗口指针
+};
+
+/**
+ * @brief The SingleApplicationByLockFile class
+ * 通过QLockFile实现的单例app，其缺点是不能与第一个软件通信，故也不能打开原来的软件界面
+ */
+class SingleApplicationByLockFile : public QApplication, public SingleAppImpl
+{
+public:
+#ifdef Q_QDOC
+    SingleApplicationByLockFile(int &argc, char **argv);
+#else
+    SingleApplicationByLockFile(int &argc, char **argv, int = ApplicationFlags);
+#endif
+
+    void setLockFilePath(const QString path);
+
+    // SingleAppImpl interface
+public:
+    virtual bool isRunning() override;
+    virtual void doSomethingIfIsRun() override;
+
+private:
+    QString m_lockFilePath;
 };
 
 #endif // SINGLEAPPLICATION_H

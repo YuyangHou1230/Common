@@ -1,24 +1,31 @@
 #include "singleapplication.h"
 
+#include <QDir>
 #include <QFileInfo>
 #include <QLocalSocket>
+#include <QLockFile>
 #include <QWidget>
+#include <QMessageBox>
 #include "windows.h"
 
 #define TIME_OUT   500
 #define USE_WIN_API // 使用windows API 可以以原大小进行显示
 
 #ifdef Q_QDOC
-SingleApplication::SingleApplication(int &argc, char **argv) : QApplication(argc, argv)
-{
-
-}
-#else
-SingleApplication::SingleApplication(int &argc, char **argv, int flags) : QApplication(argc, argv, flags),
-  m_isRunning(false),
+SingleApplication::SingleApplication(int &argc, char **argv) : QApplication(argc, argv),
+    m_isRunning(false),
     mainForm(nullptr)
 {
     serverName = QFileInfo(QApplication::applicationDirPath()).fileName();
+
+    InitLocalConnection();
+}
+#else
+SingleApplication::SingleApplication(int &argc, char **argv, int flags) : QApplication(argc, argv, flags),
+    m_isRunning(false),
+    mainForm(nullptr)
+{
+    serverName = QFileInfo(QApplication::applicationFilePath()).fileName(); // 以应用名作为服务器名称
 
     InitLocalConnection();
 }
@@ -89,13 +96,15 @@ void SingleApplication::NewLocalServer()
             localserver->listen(serverName); //重新监听
         }
     }
+    else{
+        qWarning() << "服务器创建失败";
+    }
 }
 
 void SingleApplication::ActivateWindow()
 {
     if(mainForm)
     {
-
 #ifdef USE_WIN_API //这个可以显示原窗口的大小（即最小化前的大小）（windowsAPI唤醒窗口）
         HWND hwnd = reinterpret_cast<HWND>(mainForm->winId());
 
@@ -106,11 +115,56 @@ void SingleApplication::ActivateWindow()
         else{
             ShowWindow(hwnd, SW_RESTORE);
         }
-
 #else
         mainForm->showNormal();
 #endif
         mainForm->raise();
         mainForm->activateWindow();
     }
+}
+
+#ifdef Q_QDOC
+SingleApplicationByLockFile::SingleApplicationByLockFile(int &argc, char **argv) : QApplication(argc, argv)
+{
+    m_lockFilePath = applicationDirPath();
+}
+#else
+SingleApplicationByLockFile::SingleApplicationByLockFile(int &argc, char **argv, int flags) : QApplication(argc, argv, flags)
+{
+    m_lockFilePath = applicationDirPath();
+}
+#endif
+
+void SingleApplicationByLockFile::setLockFilePath(const QString path)
+{
+    m_lockFilePath = path;
+    if(path.isEmpty()){
+        m_lockFilePath = applicationDirPath();
+    }
+
+    QFileInfo fileinfo(m_lockFilePath);
+    QDir dir(fileinfo.absolutePath());
+    if(!dir.exists())
+    {
+        dir.mkpath(fileinfo.absolutePath());
+    }
+
+}
+
+
+bool SingleApplicationByLockFile::isRunning()
+{
+    QFileInfo fileinfo(m_lockFilePath);
+    QLockFile lockfile(fileinfo.absoluteFilePath());
+    if(!lockfile.tryLock(2000))
+    {
+        return true;
+    }
+
+    return false;
+}
+
+void SingleApplicationByLockFile::doSomethingIfIsRun()
+{
+    QMessageBox::critical(nullptr, "错误", "当前已有程序实例正在运行！！！");
 }
