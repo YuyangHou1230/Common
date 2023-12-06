@@ -12,11 +12,14 @@ public:
     explicit FramelessWidget(QWidget *widget, QWidget *parent = nullptr);
     ~FramelessWidget();
 
+    QWidget *centralWidget();
+
 signals:
 
 protected:
 
     WindowMoveHelper *moveHelper;
+    QWidget *centraWidget;
 };
 
 #endif // FRAMELESSWIDGET_H

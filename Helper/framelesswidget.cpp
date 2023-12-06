@@ -18,7 +18,7 @@ FramelessWidget::FramelessWidget(QWidget *widget, QWidget *parent) : QWidget(par
     QVBoxLayout *mainLayout = new QVBoxLayout();
     mainLayout->setContentsMargins(5, 5, 5, 5);
 
-    QWidget *centraWidget = new QWidget();
+    centraWidget = new QWidget();
     centraWidget->setObjectName("centraWidget");
     setStyleSheet("#centraWidget{background-color:rgba(100, 100, 100, 100); border: 1px solid rgb(77, 77, 77); border-radius: 8px;}");
 
@@ -48,10 +48,15 @@ FramelessWidget::FramelessWidget(QWidget *widget, QWidget *parent) : QWidget(par
     //给顶层QWidget设置阴影
     centraWidget->setGraphicsEffect(shadow);
 
-    moveHelper = new WindowMoveHelper(this);
+//    moveHelper = new WindowMoveHelper(this);
 }
 
 FramelessWidget::~FramelessWidget()
 {
-    moveHelper->deleteLater();
+    //    moveHelper->deleteLater();
+}
+
+QWidget *FramelessWidget::centralWidget()
+{
+    return centraWidget;
 }

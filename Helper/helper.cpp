@@ -1,17 +1,51 @@
 #include "helper.h"
 
-#include <QWidget>
 #include <QStyle>
+#include <QWidget>
 
+namespace Helper
+{
 
-namespace Helper {
+void UpdateStyleSheet(QWidget *widget, char *name, QVariant value)
+{
+    widget->setProperty(name, value);
+    widget->style()->unpolish(widget);
+    widget->style()->polish(widget);
+}
 
-    void UpdateStyleSheet(QWidget *widget, char* name, QVariant value)
+void ClearLayout(QLayout *layout)
+{
+    QLayoutItem *item;
+    while ( (item = layout->takeAt(0)) != nullptr )
     {
-        widget->setProperty(name, value);
-        widget->style()->unpolish(widget);
-        widget->style()->polish(widget);
+        QWidget *widget = item->widget();
+        if ( widget )
+        {
+            widget->deleteLater();
+        }
+        else
+        {
+            QLayout *sublayout = item->layout();
+            if ( sublayout )
+            {
+                ClearLayout(sublayout);
+            }
+        }
+        delete item;
+    }
+}
+
+void ClearWidgetLayout(QWidget *widget)
+{
+    QLayout *layout = widget->layout();
+    if ( layout )
+    {
+        ClearLayout(layout);
+        delete layout;
+        layout = nullptr;
     }
 
-
+    widget->setLayout(nullptr);
 }
+
+}   // namespace Helper

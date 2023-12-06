@@ -26,7 +26,8 @@ public:
 #endif
     ~SingleApplication();
 
-    bool isRunning() override;
+    // 逻辑判断函数，禁止重写
+    bool isRunning() override final;
     void doSomethingIfIsRun() override;
 
     void setMainform(QWidget *mainform);

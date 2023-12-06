@@ -8,26 +8,22 @@ CONFIG += c++11
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+INCLUDEPATH += $$PWD/Lineedit
+
 SOURCES += \
-    ColorsSelect/colorblock.cpp \
-    ColorsSelect/colorbutton.cpp \
-    ColorsSelect/colormenu.cpp \
-    framelesswidget.cpp \
-    helper.cpp \
+    Lineedit/searchlineedit.cpp \
+    loginform.cpp \
     main.cpp \
-    widget.cpp \
-    windowmovehelper.cpp \
-    windowresizehelper.cpp
+    controltest.cpp
 
 HEADERS += \
-    ColorsSelect/colorblock.h \
-    ColorsSelect/colorbutton.h \
-    ColorsSelect/colormenu.h \
-    framelesswidget.h \
-    helper.h \
-    widget.h \
-    windowmovehelper.h \
-    windowresizehelper.h
+    Lineedit/searchlineedit.h \
+    controltest.h \
+    loginform.h
+
+FORMS += \
+    controltest.ui \
+    loginform.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
