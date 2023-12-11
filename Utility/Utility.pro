@@ -11,10 +11,12 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    nofocusitemdelegate.cpp \
     singleapplication.cpp
 
 HEADERS += \
     mainwindow.h \
+    nofocusitemdelegate.h \
     singleapplication.h
 
 FORMS += \

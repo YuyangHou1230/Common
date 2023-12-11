@@ -4,12 +4,13 @@
 #include <QPainter>
 
 const int g_HoverOffset = 2;
-const int g_margin = 2;
+const int g_margin      = 2;
 
-ColorBlock::ColorBlock(QWidget *parent) : QWidget(parent)
+ColorBlock::ColorBlock(QWidget *parent)
+    : QWidget(parent)
 {
-    m_color = Qt::black;
-    m_hasHover = true;
+    m_color          = Qt::black;
+    m_hasHover       = true;
     m_hasHoverBorder = true;
 
     m_pressed = false;
@@ -18,10 +19,11 @@ ColorBlock::ColorBlock(QWidget *parent) : QWidget(parent)
     setToolTip(tr("color: %1").arg(m_color.name()));
 }
 
-ColorBlock::ColorBlock(QColor color, QWidget *parent) : QWidget(parent) ,
-     m_color(color)
+ColorBlock::ColorBlock(QColor color, QWidget *parent)
+    : QWidget(parent)
+    , m_color(color)
 {
-    m_hasHover = true;
+    m_hasHover       = true;
     m_hasHoverBorder = true;
 
     m_pressed = false;
@@ -39,10 +41,11 @@ void ColorBlock::paintEvent(QPaintEvent *e)
     // 绘制阴影
 
     // 绘制色块
-    QRect rec = rect();
-    rec = rec.adjusted(g_margin, g_margin, -g_margin, -g_margin);
+    QRect rec       = rect();
+    rec             = rec.adjusted(g_margin, g_margin, -g_margin, -g_margin);
     int hoverOffset = 0;
-    if(m_hasHover && !m_isEnter){
+    if ( m_hasHover && !m_isEnter )
+    {
         hoverOffset = g_HoverOffset;
     }
     QRect content = rec.adjusted(hoverOffset, hoverOffset, -hoverOffset, -hoverOffset);
@@ -50,12 +53,12 @@ void ColorBlock::paintEvent(QPaintEvent *e)
     painter.setPen(Qt::NoPen);
 
     // 绘制边框
-    if(m_hasHover && m_hasHoverBorder && m_isEnter){
+    if ( m_hasHover && m_hasHoverBorder && m_isEnter )
+    {
         painter.setBrush(Qt::black);
         painter.drawRoundedRect(rect(), 4, 4);
-//        painter.fillRect(rect(), Qt::black);
+        //        painter.fillRect(rect(), Qt::black);
     }
-
 
     painter.setBrush(m_color);
     painter.drawRoundedRect(content, 2, 2);
@@ -63,7 +66,8 @@ void ColorBlock::paintEvent(QPaintEvent *e)
 
 void ColorBlock::mousePressEvent(QMouseEvent *e)
 {
-    if(e->button() == Qt::LeftButton){
+    if ( e->button() == Qt::LeftButton )
+    {
         m_pressed = true;
     }
 }
@@ -71,7 +75,8 @@ void ColorBlock::mousePressEvent(QMouseEvent *e)
 void ColorBlock::mouseReleaseEvent(QMouseEvent *e)
 {
     (void)e;
-    if(m_pressed){
+    if ( m_pressed )
+    {
         emit clicked();
     }
 }
@@ -102,10 +107,13 @@ QColor ColorBlock::color() const
 void ColorBlock::setColor(const QColor &color)
 {
     m_color = color;
+
+    update();
 }
 
-ColorIndicator::ColorIndicator(QWidget *parent) : ColorBlock(parent)
+ColorIndicator::ColorIndicator(QWidget *parent)
+    : ColorBlock(parent)
 {
-    m_hasHover = false;
+    m_hasHover       = false;
     m_hasHoverBorder = false;
 }
