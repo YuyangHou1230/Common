@@ -5,7 +5,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    //    LoginForm    w;
+    //        LoginForm    w;
     ControlTest w;
     w.show();
     return a.exec();

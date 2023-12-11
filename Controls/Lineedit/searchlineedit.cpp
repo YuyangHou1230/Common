@@ -21,8 +21,7 @@ public:
         setWindowFlags(Qt::ToolTip | Qt::FramelessWindowHint);
         setAttribute(Qt::WA_TranslucentBackground);
         setStyleSheet("QDialog { background-color: #3498db; border: 1px solid #2980b9; color: white; }");
-
-        QLabel *label = new QLabel(text, this);
+        label = new QLabel(text, this);
         label->setAlignment(Qt::AlignCenter);
 
         QHBoxLayout *layout = new QHBoxLayout(this);

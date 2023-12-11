@@ -46,6 +46,16 @@
      </item>
     </layout>
    </widget>
+   <widget class="SecondaryListWidget" name="listView">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>160</y>
+      <width>401</width>
+      <height>371</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -64,6 +74,11 @@
    <class>SearchLineEdit</class>
    <extends>QLineEdit</extends>
    <header>searchlineedit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>SecondaryListWidget</class>
+   <extends>QListView</extends>
+   <header>secondarylistwidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
