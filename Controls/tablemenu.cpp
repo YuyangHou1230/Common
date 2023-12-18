@@ -13,7 +13,10 @@ TableMenu::TableMenu(QWidget *parent)
     horizontalHeader()->hide();
 
     horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    verticalHeader()->setDefaultSectionSize(40);
+    verticalHeader()->setMinimumSectionSize(80);
+    verticalHeader()->setMaximumSectionSize(50);
 
     setSelectionBehavior(QAbstractItemView::SelectRows);    // 行选择
     setSelectionMode(QAbstractItemView::SingleSelection);   // 单个选中
@@ -54,6 +57,8 @@ TableMenu::TableMenu(QWidget *parent)
 
 void TableMenu::setStringList(const QStringList &list, int defaultIndex)
 {
+    m_list = list;
+
     setColumnCount(1);
     setRowCount(list.size());
 
@@ -67,4 +72,12 @@ void TableMenu::setStringList(const QStringList &list, int defaultIndex)
     {
         selectRow(defaultIndex);
     }
+}
+
+void TableMenu::addItem(QString text)
+{
+    insertRow(m_list.size());
+
+    model()->setData(model()->index(m_list.size(), 0), text, Qt::DisplayRole);
+    model()->setData(model()->index(m_list.size(), 0), Qt::AlignCenter, Qt::TextAlignmentRole);
 }
