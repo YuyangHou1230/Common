@@ -19,7 +19,6 @@ INCLUDEPATH += \
 SOURCES += \
     Lineedit/searchlineedit.cpp \
     loginform.cpp \
-    controltest.cpp \
     SecondaryList/secondarylistwidget.cpp \
     SecondaryList/itemwidget.cpp \
     nofocusitemdelegate.cpp \
@@ -27,7 +26,6 @@ SOURCES += \
 
 HEADERS += \
     Lineedit/searchlineedit.h \
-    controltest.h \
     loginform.h \
     SecondaryList/secondarylistwidget.h \
     SecondaryList/itemwidget.h \
@@ -35,7 +33,6 @@ HEADERS += \
     tablemenu.h
 
 FORMS += \
-    controltest.ui \
     loginform.ui
 
 # Default rules for deployment.

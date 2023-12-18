@@ -16,7 +16,6 @@ SOURCES += \
     ColorsSelect/colormenu.cpp \
     framelesswidget.cpp \
     helper.cpp \
-    widget.cpp \
     windowmovehelper.cpp \
     windowresizehelper.cpp
 
@@ -26,7 +25,6 @@ HEADERS += \
     ColorsSelect/colormenu.h \
     framelesswidget.h \
     helper.h \
-    widget.h \
     windowmovehelper.h \
     windowresizehelper.h
 
