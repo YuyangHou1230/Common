@@ -2,11 +2,8 @@ TEMPLATE = subdirs
 
 SUBDIRS += \
     Controls \
+    Examples \
     Helper \
     Utility
 
-
-
-CONFIG += qt
-
-QT += widgets
+Examples.depends = Controls Helper Utility

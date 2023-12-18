@@ -2,7 +2,11 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++11
+TARGET = control
+
+TEMPLATE = lib
+CONFIG += c++11 shared
+DESTDIR = $${OUT_PWD}/../lib
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -15,17 +19,20 @@ INCLUDEPATH += \
 SOURCES += \
     Lineedit/searchlineedit.cpp \
     loginform.cpp \
-    main.cpp \
     controltest.cpp \
     SecondaryList/secondarylistwidget.cpp \
-    SecondaryList/itemwidget.cpp
+    SecondaryList/itemwidget.cpp \
+    nofocusitemdelegate.cpp \
+    tablemenu.cpp
 
 HEADERS += \
     Lineedit/searchlineedit.h \
     controltest.h \
     loginform.h \
     SecondaryList/secondarylistwidget.h \
-    SecondaryList/itemwidget.h
+    SecondaryList/itemwidget.h \
+    nofocusitemdelegate.h \
+    tablemenu.h
 
 FORMS += \
     controltest.ui \

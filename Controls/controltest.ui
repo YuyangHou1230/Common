@@ -49,10 +49,20 @@
    <widget class="SecondaryListWidget" name="listView">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>160</y>
+      <x>210</x>
+      <y>140</y>
       <width>401</width>
       <height>371</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="TableMenu" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>140</y>
+      <width>171</width>
+      <height>192</height>
      </rect>
     </property>
    </widget>
@@ -79,6 +89,11 @@
    <class>SecondaryListWidget</class>
    <extends>QListView</extends>
    <header>secondarylistwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>TableMenu</class>
+   <extends>QTableWidget</extends>
+   <header>tablemenu.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
