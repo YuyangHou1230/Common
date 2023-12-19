@@ -15,7 +15,6 @@ DESTDIR = $${OUT_PWD}/../lib
 
 LIBS += -L$${OUT_PWD}/../lib -lcontrol
 INCLUDEPATH += $$PWD/../Controls
-message($$PWD/../Controls)
 
 # You can also make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.

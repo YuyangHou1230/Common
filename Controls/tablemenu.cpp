@@ -2,8 +2,8 @@
 
 #include "nofocusitemdelegate.h"
 
-#include <QHeaderView>
 #include <QDebug>
+#include <QHeaderView>
 
 TableMenu::TableMenu(QWidget *parent)
     : QTableWidget(parent)
@@ -23,12 +23,10 @@ TableMenu::TableMenu(QWidget *parent)
     setEditTriggers(QAbstractItemView::NoEditTriggers);     // 不可编辑
     setShowGrid(true);
 
-
     setItemDelegate(new NoFocusItemDelegate);   // 自定义无交点代理
 
-    connect(this, &TableMenu::currentItemChanged, this, [=](QTableWidgetItem *item)
-    {
-        if(item != nullptr)
+    connect(this, &TableMenu::currentItemChanged, this, [=](QTableWidgetItem *item) {
+        if ( item != nullptr )
         {
             qDebug() << item->text() << item->row();
         }
@@ -52,7 +50,7 @@ TableMenu::TableMenu(QWidget *parent)
                 border: 1px solid #FF0000; /* 单元格边框样式，红色边框 */
             }
         )";
-//    setStyleSheet(style);
+    //    setStyleSheet(style);
 }
 
 void TableMenu::setStringList(const QStringList &list, int defaultIndex)
