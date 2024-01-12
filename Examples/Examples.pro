@@ -13,8 +13,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # 与lib在同一目录，才能运行
 DESTDIR = $${OUT_PWD}/../lib
 
-LIBS += -L$${OUT_PWD}/../lib -lcontrol
+LIBS += -L$${OUT_PWD}/../lib -lcontrol -lUtility
 INCLUDEPATH += $$PWD/../Controls
+INCLUDEPATH += $$PWD/../Utility
 
 # You can also make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -23,13 +24,16 @@ INCLUDEPATH += $$PWD/../Controls
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    threaddemo.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    threaddemo.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    threaddemo.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
