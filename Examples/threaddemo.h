@@ -5,6 +5,8 @@
 
 #include "thread.h"
 
+class SyncThread;
+
 class WorkerThread : public Thread
 {
 protected:
@@ -33,9 +35,18 @@ private slots:
 
     void on_btnStop_clicked();
 
+    void on_btnStart_2_clicked();
+
+    void on_btnStop_2_clicked();
+
+    void on_btnRun_clicked();
+
+    void on_btnQuit_clicked();
+
 private:
     Ui::ThreadDemo *ui;
     WorkerThread *  thread;
+    SyncThread *m_syncThread;
 };
 
 #endif   // THREADDEMO_H

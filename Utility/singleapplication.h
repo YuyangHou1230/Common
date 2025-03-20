@@ -2,13 +2,13 @@
 #define SINGLEAPPLICATION_H
 
 #include <QApplication>
-#include <QObject>
 #include <QLocalServer>
+#include <QObject>
 
 class SingleAppImpl
 {
 public:
-    virtual bool isRunning() = 0;
+    virtual bool isRunning()          = 0;
     virtual void doSomethingIfIsRun() = 0;
 };
 
@@ -32,8 +32,6 @@ public:
 
     void setMainform(QWidget *mainform);
 
-
-
 private slots:
     //有新连接时触发
     void NewLocalConnection();
@@ -46,12 +44,11 @@ private:
     //激活窗口
     void ActivateWindow();
 
+    QLocalServer *localserver;   //是否已有实例在运行
+    QString       serverName;    //本地socket Server
+    bool          m_isRunning;   //服务名称
 
-    QLocalServer *localserver;        //是否已有实例在运行
-    QString       serverName;           //本地socket Server
-    bool          m_isRunning;               //服务名称
-
-    QWidget *mainForm; // 主窗口指针
+    QWidget *mainForm;   // 主窗口指针
 };
 
 /**
@@ -78,4 +75,24 @@ private:
     QString m_lockFilePath;
 };
 
-#endif // SINGLEAPPLICATION_H
+class SingleApplicationSharedMemory : public QApplication, public SingleAppImpl
+{
+public:
+#ifdef Q_QDOC
+    SingleApplicationSharedMemory(int &argc, char **argv);
+#else
+    SingleApplicationSharedMemory(int &argc, char **argv, int = ApplicationFlags);
+#endif
+
+    // SingleAppImpl interface
+public:
+    virtual bool isRunning() override;
+    virtual void doSomethingIfIsRun() override;
+
+private:
+    QString m_lockKey;
+
+    bool m_isRunning;   //服务名称
+};
+
+#endif   // SINGLEAPPLICATION_H

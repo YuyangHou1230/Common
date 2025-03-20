@@ -18,6 +18,7 @@ INCLUDEPATH += \
 
 SOURCES += \
     Lineedit/searchlineedit.cpp \
+    ipedit.cpp \
     loginform.cpp \
     SecondaryList/secondarylistwidget.cpp \
     SecondaryList/itemwidget.cpp \
@@ -26,6 +27,7 @@ SOURCES += \
 
 HEADERS += \
     Lineedit/searchlineedit.h \
+    ipedit.h \
     loginform.h \
     SecondaryList/secondarylistwidget.h \
     SecondaryList/itemwidget.h \

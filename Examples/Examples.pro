@@ -13,9 +13,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # 与lib在同一目录，才能运行
 DESTDIR = $${OUT_PWD}/../lib
 
-LIBS += -L$${OUT_PWD}/../lib -lcontrol -lUtility
+LIBS += -L$${OUT_PWD}/../lib -lcontrol -lUtility -lHelper
 INCLUDEPATH += $$PWD/../Controls
 INCLUDEPATH += $$PWD/../Utility
+INCLUDEPATH += $$PWD/../Helper
 
 # You can also make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.

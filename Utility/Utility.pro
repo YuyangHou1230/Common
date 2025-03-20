@@ -12,10 +12,12 @@ DESTDIR = $${OUT_PWD}/../lib
 
 SOURCES += \
     singleapplication.cpp \
+    syncthread.cpp \
     thread.cpp
 
 HEADERS += \
     singleapplication.h \
+    syncthread.h \
     thread.h
 
 # Default rules for deployment.

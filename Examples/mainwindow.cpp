@@ -3,6 +3,8 @@
 
 #include "tablemenu.h"
 
+#include "ColorsSelect/colorbutton.h"
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -16,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     ui->tableWidget->setStringList(list);
+
+    ColorButton *btn = new ColorButton(this);
 }
 
 MainWindow::~MainWindow()
