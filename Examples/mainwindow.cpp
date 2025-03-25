@@ -5,6 +5,12 @@
 
 #include "ColorsSelect/colorbutton.h"
 
+#include "messagequeue.h"
+#include <QDebug>
+#include <QTimer>
+
+#define QStringMsgQueue MessageQueue<QString>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -20,6 +26,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget->setStringList(list);
 
     ColorButton *btn = new ColorButton(this);
+
+    QStringMsgQueue *queue = new QStringMsgQueue;
+    queue->setCallback([](QString msg){qDebug() << msg; });
+    queue->start();
+
+    QTimer *timer;
+    timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, [queue](){queue->addMessage("push msg");});
+    timer->start(1000);
 }
 
 MainWindow::~MainWindow()
